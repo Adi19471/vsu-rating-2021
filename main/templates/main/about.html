@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+{% load static %}
+
+  <style>
+      .homepage{
+          border-color: darkmagenta;
+          border: 2px double darkblue;
+          width: 100%;
+          height: 100%;
+      }
+
+  </style>
+
+<div class="container">
+    <div class="<div class=" jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="">COLLEGE GRATING MANAGEMENT SYSTEM</h1>
+            <p class="lead">VSU</p>
+            <hr class="my-2">
+            <p>More info</p>
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{% url 'main:home' %}" role="button">GRADING SYSTEM</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
