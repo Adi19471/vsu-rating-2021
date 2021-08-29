@@ -8,7 +8,7 @@
 {% block content %}
 
 <style>
-  .disply{
+  .disply {
     text-align: center;
     color: rgb(212, 212, 248);
     font-weight: bold;
@@ -18,9 +18,14 @@
     margin-left: 500px;
     font-size: 20px;
   }
+
+  iframe {
+    margin-left: 540px;
+    margin-top: -500px;
+  }
 </style>
 
-<div class="container contact">
+<div class="container-fluid contact">
   <div class="row">
     <div class="col-md-6">
       <div class="contact-info">
@@ -38,8 +43,8 @@
       <form action="" method="POST">
         {% csrf_token %}
         {{form|crispy}}
-
-        <center>
+        
+        <center style="margin-top:-100px;">
           <input type="submit" class="btn btn-warning" value="Submit">
           <input type="submit" class="btn btn-info" value="Re-enter">
         </center>
@@ -48,20 +53,25 @@
   </div>
 </div>
 {% if messages %}
-    {% for message in messages %}
+{% for message in messages %}
 
-    <!-- <small class="disply">{{message}}</small> -->
-    <!-- <script>{{message}}</script> -->
-    <script>
-      alert('{{ message }}');
-      
-  </script>
+<!-- <small class="disply">{{message}}</small> -->
+<!-- <script>{{message}}</script> -->
+<script>
+  alert('{{ message }}');
 
+</script>
 
-      {% endfor %}
-  {% endif %}
+?
+{% endfor %}
+{% endif %}
+<!-- map page -->
 
-
+!<div class="container-fluid offset-2">
+  <iframe
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3865.2666333476336!2d79.92033391483734!3d14.353975289959937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4cf2011dc755c9%3A0x18b437872fca69d2!2sVikrama%20Simhapuri%20University%2C%20Andhra%20Pradesh%20524320!5e0!3m2!1sen!2sin!4v1625547843051!5m2!1sen!2sin"
+  width="400" height="300" style="border:2;" allowfullscreen="" loading="lazy"></iframe>
+</div><
 <h3 class="text-center alert alert-warning">DISPLAY CONTACT LIST ...!!</h3>
 {% if pizaa %}
 
@@ -101,4 +111,6 @@
     </div>
   </div>
 </div>
+
+
 {% endblock %}

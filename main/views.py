@@ -4,6 +4,9 @@ from .models import *
 from .forms import *
 from django.db.models import Avg
 
+from django.conf import settings 
+from django.core.mail import send_mail
+
 # messages disply from settings to views import
 
 from django.contrib import messages
@@ -59,10 +62,11 @@ def add_movies(request):
                 if form.is_valid():
                     data = form.save(commit=False)
                     data.save()
+                    messages.success(request,"Your data has saved succesfullly")
                     return redirect("main:home")
             else:
                 form = MovieForm()
-            return render(request, 'main/addmovies.html', {"form": form, "controller": "Add Movies"})
+            return render(request, 'main/addmovies.html', {"form": form, "controller": "ADD COLLEGE"})
         
         # if they are not admin
         else:
@@ -199,3 +203,36 @@ def contact(request):
      da = ContactForm()
     lop = Contact.objects.all()   
     return render(request, 'main/contact.html',{'form':da,'pizaa':lop})
+
+
+
+
+# gallery page
+
+def gallery(request):
+   
+ if request.method == 'POST':
+    form = ImagesForms(request.POST,request.FILES)
+    if form.is_valid():
+     form.save()
+     messages.success(request,'Your Image is Succesfull saved')
+ form = ImagesForms()
+ img = Image.objects.all()
+ return render(request, 'main/gallery.html',{'form':form,'img':img})
+
+
+
+def Email_view(request):
+
+    send_mail (
+        subject="You Visite COllEGE RATING PROJECT",
+        message="hello you clicked rating app",
+        from_email=settings.EMAIL_HOST_USER,
+        recipient_list=['djangomvt@gmail.com'],
+       
+    )
+    # return redirect("/")
+    # return HttpResponse("you got okay")
+    return render(request, 'main/Email_view_show.html')
+
+
